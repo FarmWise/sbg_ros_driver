@@ -1,0 +1,10 @@
+steps:
+  - label: ':hammer: Build debian'
+    commands:
+      - cmake --build .
+    plugins:
+      - docker-compose#v3.0.3:
+          config: .buildkite/docker-compose.yml
+          run: app
+    artifact_paths:
+      - "*.deb"

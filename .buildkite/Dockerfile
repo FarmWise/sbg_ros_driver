@@ -1,0 +1,17 @@
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
+
+# Install kernel sources for host...
+RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
+
+RUN mkdir -p /app/source
+
+RUN chmod 777 /app && chmod 777 /app/source
+
+# Host user mapping
+RUN groupadd --system --gid 3434 buildkite-agent
+RUN useradd --system --gid buildkite-agent --uid 3434 --shell /bin/bash --home-dir /app/source --create-home buildkite-agent
+
+USER buildkite-agent
+WORKDIR /app/source
