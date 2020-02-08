@@ -3,7 +3,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
 
 # Install kernel sources for host...
-RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
+RUN apt-get update && apt-get install -y linux-headers-$(uname -r) && sudo apt-get install ros-kinetic-diagnostic-updater-farmwise
 
 RUN mkdir -p /app/source
 

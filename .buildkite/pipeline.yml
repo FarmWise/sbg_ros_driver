@@ -1,7 +1,7 @@
 steps:
   - label: ':hammer: Build debian'
     commands:
-      - cmake --build .
+      - make debian
     plugins:
       - docker-compose#v3.0.3:
           config: .buildkite/docker-compose.yml

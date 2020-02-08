@@ -3,6 +3,18 @@ project(sbg_driver)
 
 add_compile_options(-std=c++11)
 
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Farmwise mod of sbg_ros_driver")
+SET(CPACK_PACKAGE_VENDOR "farmwise.io")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+SET(CPACK_PACKAGE_NAME "ros-kinetic-sbg-driver-farmwise")
+SET(CPACK_PACKAGE_VERSION_MAJOR "0")
+SET(CPACK_PACKAGE_VERSION_MINOR "0")
+SET(CPACK_PACKAGE_VERSION_PATCH "1")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Adam Cadien")
+SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/ros/kinetic")
+include(CPack)
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
@@ -119,7 +131,7 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS src
-  # LIBRARIES ${PROJECT_NAME} 
+  # LIBRARIES ${PROJECT_NAME}
 #  CATKIN_DEPENDS roscpp sensor_msgs std_msgs
   # DEPENDS sbgECom
 )
