@@ -1,14 +1,12 @@
 FROM ubuntu
 
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
-
-RUN echo $FOO
-RUN echo "test"
-
-FROM farmwise/build_essentials:latest
+RUN apt-get install -y apt-utils
 
 # Install kernel sources for host...
-RUN apt-get update && apt-get install -y linux-headers-$(uname -r) && sudo apt-get install ros-kinetic-diagnostic-updater-farmwise
+RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
+#RUN apt-get install ros-kinetic-diagnostic-updater-farmwise
+
 
 RUN mkdir -p /app/source
 
