@@ -1,6 +1,7 @@
 # Jetbrains IDEs
 cmake-build-debug
 .idea
+*~
 
 # Build folders
 Build
@@ -38,4 +39,3 @@ build
 *.exe
 *.out
 *.app
-
