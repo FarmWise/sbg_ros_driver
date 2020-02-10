@@ -2,6 +2,8 @@ FROM ubuntu
 
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
 
+RUN echo $FOO
+
 FROM farmwise/build_essentials:latest
 
 # Install kernel sources for host...
