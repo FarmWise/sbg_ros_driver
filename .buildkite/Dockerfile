@@ -3,6 +3,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
 
 RUN echo $FOO
+RUN echo "test"
 
 FROM farmwise/build_essentials:latest
 
