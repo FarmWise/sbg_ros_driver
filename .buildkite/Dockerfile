@@ -1,5 +1,5 @@
-#FROM ubuntu
-FROM nvidia/cuda:9.0-cudnn7-runtime
+FROM ubuntu
+#FROM nvidia/cuda:9.0-cudnn7-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -24,8 +24,8 @@ RUN rosdep init && rosdep update
 
 # install ros packages
 ENV ROS_DISTRO kinetic
-RUN apt-get update && apt-get install -y ros-kinetic-ros-core=1.3.2-0* ros-kinetic-ros-base=1.3.2-0*
-# RUN apt-get update && apt-get install -y ros-kinetic-ros-core ros-kinetic-ros-base
+# RUN apt-get update && apt-get install -y ros-kinetic-ros-core=1.3.2-0* ros-kinetic-ros-base=1.3.2-0*
+RUN apt-get update && apt-get install -y ros-kinetic-ros-core ros-kinetic-ros-base
 # RUN apt-get install -y catkin libroscpp-dev libroscpp-msgs-dev ros-roscpp-msgs
 
 # Install kernel sources for host...
