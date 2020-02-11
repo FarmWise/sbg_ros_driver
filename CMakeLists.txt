@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sbg_driver)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++11 -lpthread)
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Farmwise mod of sbg_ros_driver")
 SET(CPACK_PACKAGE_VENDOR "farmwise.io")
 SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 SET(CPACK_PACKAGE_NAME "ros-kinetic-sbg-driver-farmwise")
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
 SET(CPACK_PACKAGE_VERSION_MINOR "0")
