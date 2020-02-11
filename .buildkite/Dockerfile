@@ -1,12 +1,11 @@
 FROM ubuntu
 
-RUN apt-get update && apt-get install -y make cmake dkms quilt
-RUN apt-get install -y apt-utils debmake debhelper
+RUN apt-get update
+RUN apt-get install -y make cmake dkms quilt apt-utils debmake debhelper
+RUN apt-get install -y catkin
 
 # Install kernel sources for host...
 RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
-#RUN apt-get install ros-kinetic-diagnostic-updater-farmwise
-
 
 RUN mkdir -p /app/source
 
