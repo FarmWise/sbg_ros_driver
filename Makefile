@@ -16,4 +16,5 @@ debian: build
 
 clean:
 	rm -r build
+	rm -r debian
 .PHONY: clean
