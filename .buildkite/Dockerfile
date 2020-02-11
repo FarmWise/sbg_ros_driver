@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get install -y make cmake dkms quilt apt-utils debmake debhelper
-RUN apt-get install -y catkin
+RUN apt-get install -y catkin libroscpp-dev libroscpp-msgs-dev ros-roscpp-msgs
 
 # Install kernel sources for host...
 RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
