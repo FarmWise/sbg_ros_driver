@@ -18,3 +18,4 @@ RUN chown -R buildkite-agent /app && chown -R buildkite-agent /app/source
 
 USER buildkite-agent
 WORKDIR /app/source
+ARG DEBIAN_FRONTEND=noninteractive
