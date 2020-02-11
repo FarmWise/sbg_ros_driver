@@ -1,7 +1,7 @@
 FROM ubuntu
 
-RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
-RUN apt-get install -y apt-utils
+RUN apt-get update && apt-get install -y make cmake dkms quilt
+RUN apt-get install -y apt-utils debmake debhelper
 
 # Install kernel sources for host...
 RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
