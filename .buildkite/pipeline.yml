@@ -3,9 +3,10 @@ steps:
     commands:
       - make debian
     plugins:
-      - docker-compose#v3.0.3:
+      - docker-login#v2.0.1:
           username: farmwisesvc
-          password: $FARMWISE_SVC_PASSWORD # Can be found in LastPass
+          password-env: FARMWISE_SVC_PASSWORD
+      - docker-compose#v3.0.3:
           config: .buildkite/docker-compose.yml
           run: app
     artifact_paths:
