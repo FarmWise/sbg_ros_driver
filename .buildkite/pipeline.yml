@@ -10,4 +10,4 @@ steps:
           config: .buildkite/docker-compose.yml
           run: app
     artifact_paths:
-      - "*.deb"
+      - "debian/*.deb"
