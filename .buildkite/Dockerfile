@@ -1,5 +1,7 @@
 FROM ubuntu
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update
 RUN apt-get install -y make cmake dkms quilt apt-utils debmake debhelper
 RUN apt-get install -y catkin
@@ -18,4 +20,3 @@ RUN chown -R buildkite-agent /app && chown -R buildkite-agent /app/source
 
 USER buildkite-agent
 WORKDIR /app/source
-ENV DEBIAN_FRONTEND=noninteractive
