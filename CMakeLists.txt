@@ -12,6 +12,9 @@ SET(CPACK_PACKAGE_VERSION_MINOR "0")
 SET(CPACK_PACKAGE_VERSION_PATCH "1")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Adam Cadien")
 SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/ros/kinetic")
+# Set this to ensure we overwrite the existing updater, if it's installed
+SET(CPACK_DEBIAN_PACKAGE_CONFLICTS "ros-kinetic-sbg-driver")
+SET(CPACK_DEBIAN_PACKAGE_REPLACES "ros-kinetic-sbg-driver")
 include(CPack)
 
 if(${STANDALONE_INSTALL})
