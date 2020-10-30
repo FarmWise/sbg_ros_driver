@@ -11,7 +11,9 @@ build: src CMakeLists.txt
 
 debian: build
 	cd build && cpack -G DEB
-	mv build/*.deb . && echo "$(ls *.deb)" > VERSION
+	ls
+	mv build/*.deb .
+	ls *.deb > VERSION
 .PHONY: debian
 
 clean:
