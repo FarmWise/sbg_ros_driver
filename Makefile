@@ -9,12 +9,19 @@ build: src CMakeLists.txt
 	cd build && cmake -D STANDALONE_INSTALL=1 ..
 	cd build && cmake --build .
 
-debian: build
-	mkdir -p $@
+debian: _debian VERSION
+.PHONY: debian
+
+_debian: build
 	cd build && cpack -G DEB
-	mv build/*.deb $@
+	mv build/*.deb .
+.PHONY: _debian
+
+VERSION:
+	cat $(ls *.deb) > $@
 
 clean:
-	rm -r build
-	rm -r debian
+	rm -rf build
+	rm -rf *.deb
+	rm -rf VERSION
 .PHONY: clean

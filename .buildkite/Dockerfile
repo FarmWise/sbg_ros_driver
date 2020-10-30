@@ -1,14 +1,9 @@
-FROM ubuntu
+FROM ros:noetic-ros-base-focal
 
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
 
-RUN echo $FOO
-
-FROM farmwise/build_essentials:latest
-
 # Install kernel sources for host...
-RUN apt-get update && apt-get install -y linux-headers-$(uname -r) && \
-    sudo apt-get install ros-kinetic-diagnostic-updater-farmwise
+RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
 
 RUN mkdir -p /app/source
 RUN chmod 777 /app && chmod 777 /app/source
