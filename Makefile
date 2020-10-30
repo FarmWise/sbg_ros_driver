@@ -10,11 +10,14 @@ build: src CMakeLists.txt
 	cd build && cmake --build .
 
 debian: build
-	mkdir -p $@
 	cd build && cpack -G DEB
-	mv build/*.deb $@
+	ls
+	mv build/*.deb .
+	ls *.deb > VERSION
+.PHONY: debian
 
 clean:
-	rm -r build
-	rm -r debian
+	rm -rf build
+	rm -rf *.deb
+	rm -rf VERSION
 .PHONY: clean

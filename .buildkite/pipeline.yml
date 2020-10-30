@@ -10,4 +10,29 @@ steps:
           config: .buildkite/docker-compose.yml
           run: app
     artifact_paths:
-      - "debian/*.deb"
+      - "*.deb"
+      - VERSION
+  - wait
+  - label: ':information_source: Output build version'
+    branches: master
+    command: |
+      buildkite-agent artifact download VERSION .
+      cat << EOF | buildkite-agent annotate --style 'info' --context 'version'
+        Published this debian to apt.farmwise.io: <a href="artifact://$(cat VERSION)">$(cat VERSION)</a>
+      EOF
+  - label: ':rocket: deploy debian to apt.farmwise.io'
+    branches: master
+    command: |
+      buildkite-agent artifact download *.deb .
+      buildkite-agent artifact download VERSION .
+      # The following three actions clear the aptly file cache, upload our new debian to the
+      # file cache, and then import the debian into the 'farmwise' aptly repository.
+      # https://www.aptly.info/doc/api/
+      curl -X DELETE http://apt.farmwise.io/aptly/api/files/sbg_driver
+      curl -X POST -F file=@$(cat VERSION) http://apt.farmwise.io/aptly/api/files/sbg_driver
+      curl -X POST http://apt.farmwise.io/aptly/api/repos/farmwise/file/sbg_driver
+  - wait
+  - label: ':sendit: Publish apt index'
+    branches: master
+    commands:
+      - "curl -X PUT -H 'Content-Type: application/json' --data '{\"Signing\":{\"PassphraseFile\":\"/home/ubuntu/.aptly/pgp.key\"}}' http://apt.farmwise.io/aptly/api/publish/filesystem:www:ubuntu/focal"
