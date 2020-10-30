@@ -14,14 +14,14 @@ steps:
       - VERSION
   - wait
   - label: ':information_source: Output build version'
-    # branches: master
+    branches: master
     command: |
       buildkite-agent artifact download VERSION .
       cat << EOF | buildkite-agent annotate --style 'info' --context 'version'
         Published this debian to apt.farmwise.io: <a href="artifact://$(cat VERSION)">$(cat VERSION)</a>
       EOF
   - label: ':rocket: deploy debian to apt.farmwise.io'
-    # branches: master
+    branches: master
     command: |
       buildkite-agent artifact download *.deb .
       buildkite-agent artifact download VERSION .
@@ -33,6 +33,6 @@ steps:
       curl -X POST http://apt.farmwise.io/aptly/api/repos/farmwise/file/sbg_driver
   - wait
   - label: ':sendit: Publish apt index'
-    # branches: master
+    branches: master
     commands:
       - "curl -X PUT -H 'Content-Type: application/json' --data '{\"Signing\":{\"PassphraseFile\":\"/home/ubuntu/.aptly/pgp.key\"}}' http://apt.farmwise.io/aptly/api/publish/filesystem:www:ubuntu/focal"
