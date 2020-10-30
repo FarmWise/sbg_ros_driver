@@ -3,7 +3,7 @@ FROM ros:noetic-ros-base-focal
 RUN apt-get update && apt-get install -y make debmake debhelper dkms quilt
 
 # Install kernel sources for host...
-RUN apt-get update && apt-get install -y linux-headers-$(uname -r)
+RUN apt-get update
 
 RUN mkdir -p /app/source
 RUN chmod 777 /app && chmod 777 /app/source
