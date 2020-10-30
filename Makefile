@@ -18,7 +18,7 @@ _debian: build
 .PHONY: _debian
 
 VERSION:
-	cat $(ls *.deb) > $@
+	echo "$(ls *.deb)" > $@
 
 clean:
 	rm -rf build
